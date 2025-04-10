@@ -22,18 +22,22 @@
 This utility scans a folder of video files (or optionally any files), detects the episode numbers using a variety of common patterns, and renames them based on a user-supplied show name. Special episodes (like OVAs, bonus content, or labeled "SP") are detected and moved into a separate `Specials/` subfolder.
 
 ## 🛠️ How to Use
-
-1. Compile the program:
+1. Download the file
    ```bash
-   gcc -o renamed renamed.c -Wall
+   curl -O https://raw.githubusercontent.com/Panonim/ReNamed/refs/heads/main/main.c
    ```
 
-2. Run it:
+2. Compile the program:
+   ```bash
+   gcc -o renamed main.c -Wall
+   ```
+
+3. Run it:
    ```bash
    ./renamed
    ```
    
-3. Follow the prompts:
+4. Follow the prompts:
    - Enter the show name (e.g., `Attack on Titan`)
    - Enter the path to the folder with episodes
    - Review the renaming plan
