@@ -1,6 +1,8 @@
 <img src="assets/ReNamed-Banner.svg" alt="Renamed Banner" />
 <p align="center">
+<a href="https://github.com/Panonim/ReNamed/issues">
 <img alt="GitHub Issues" src="https://img.shields.io/github/issues/Panonim/ReNamed?style=flat-square">
+</a>
 <img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/Panonim/ReNamed?style=flat-square">
 <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/Panonim/ReNamed?style=flat-square">
 <a href="https://github.com/Panonim/ReNamed/releases">
