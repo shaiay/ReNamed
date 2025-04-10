@@ -6,8 +6,7 @@
 #include <regex.h>
 #include <sys/stat.h>
 #include <errno.h>
-#include <unistd.h> /* For getopt() */
-
+#include <unistd.h>
 /* Program constants */
 #define MAX_PATH 1024
 #define MAX_FILES 1000
