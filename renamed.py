@@ -27,14 +27,14 @@ class EpisodeExtractor:
     special_patterns = [re.compile(p, re.IGNORECASE) for p in _special_patterns_str]
     episode_patterns = [re.compile(p, re.IGNORECASE) for p in _episode_patterns_str]
 
-    def is_special_episode(self, filename: str):
+    def is_special_episode(self, filename: str) -> bool:
         for p in self.special_patterns:
             if p.search(filename):
                 return True
 
         return False
 
-    def extract_episode_number(self, filename: str):
+    def extract_episode_number(self, filename: str) -> int:
         for p in self.episode_patterns:
             match = p.search(filename)
             if match:
@@ -44,21 +44,21 @@ class EpisodeExtractor:
 
 
 def main(show_name: str, input_folder: Path, output_folder: Path):
-    output_folder.mkdir(parents=True, exist_ok=True)
     extractor = EpisodeExtractor()
+    output_folder.mkdir(parents=True, exist_ok=True)
 
     for ext in ['mkv', 'mp4', 'avi']:
-        for fname in input_folder.glob(f"*.{ext}"):
-            episode = extractor.extract_episode_number(str(fname))
+        for input_file_name in input_folder.glob(f"*.{ext}"):
+            episode = extractor.extract_episode_number(str(input_file_name))
             if episode > 0:
-                if extractor.is_special_episode(fname):
+                if extractor.is_special_episode(input_file_name):
                     (output_folder / "Specials").mkdir(parents=True, exist_ok=True)
                     output_name = output_folder / "Specials" / f"{show_name} - {episode:02} - Special.{ext}"
                 else:
                     output_name = output_folder / f"{show_name} - {episode:02}.{ext}"
 
-                print(f"{fname.stem} -> {output_name}")
-                fname.rename(output_name)
+                print(f"{input_file_name.stem} -> {output_name}")
+                input_file_name.rename(output_name)
 
 
 
@@ -69,7 +69,7 @@ if __name__ == '__main__':
     )
 
     parser.add_argument('-n', '--show-name', required=True, help='Name of the show')
-    parser.add_argument('-i', '--input-folder', required=False, defualt=Path.cwd(), help='Input folder (default CWD)')
+    parser.add_argument('-i', '--input-folder', required=False, default=Path.cwd(), help='Input folder (default CWD)')
     parser.add_argument('-o', '--output-folder', required=True, help='Output folder')
 
     args = parser.parse_args()
